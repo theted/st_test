@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <p>Actual hello!</p>
+  <p class="text-red-400">Actual hello!</p>
 </template>
