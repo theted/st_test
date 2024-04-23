@@ -10,5 +10,11 @@ export const useUserStore = defineStore("counter", {
     add(user) {
       this.users.push(user);
     },
+    get(id) {
+      return this.users[id];
+    },
+    update(id, user) {
+      this.users[id] = user;
+    },
   },
 });
