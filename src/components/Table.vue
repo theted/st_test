@@ -1,13 +1,23 @@
 <template>
-  <table class="border border-slate-500 mb-6">
+  <table class="mb-8">
     <thead>
-      <tr>
-        <th v-for="key in Object.keys(data[0])" :key="key">{{ key }}</th>
+      <tr class="text-center">
+        <th
+          v-for="key in Object.values(fieldNames)"
+          :key="key"
+          class="text-sm pb-3 font-light"
+        >
+          {{ key }}
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, index) in data" :key="index" class="bg-slate-500">
-        <td v-for="(value, key) in item" :key="key">
+      <tr
+        v-for="(item, index) in data"
+        :key="index"
+        class="odd:bg-gray-100 even:bg-gray-50"
+      >
+        <td v-for="(value, key) in item" :key="key" class="p-3">
           <RouterLink :to="`/edit/${index}`">
             {{ value }}
           </RouterLink>
@@ -17,21 +27,17 @@
   </table>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from "vue";
+<script setup lang="ts">
+import { defineProps } from "vue";
 import { RouterLink } from "vue-router";
+import { fieldNames } from "../constants";
 
-interface DataType {
-  [key: string]: any;
-}
+type DataType = Record<string, any>;
 
-export default defineComponent({
-  name: "Table",
-  props: {
-    data: {
-      type: Array as PropType<DataType[]>,
-      required: true,
-    },
+defineProps({
+  data: {
+    type: Array as () => DataType[],
+    required: true,
   },
 });
 </script>

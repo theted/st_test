@@ -1,12 +1,11 @@
 <template>
-  <RouterLink :to="to" class="border p-3 bg-slate-500 text-white rounded-sm"
-    >{{ text }}
-  </RouterLink>
+  <RouterLink :to="to" :class="styles.button">{{ text }} </RouterLink>
 </template>
 
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 import { defineProps } from "vue";
+import { styles } from "../constants";
 
 defineProps({
   to: {

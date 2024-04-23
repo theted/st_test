@@ -1,19 +1,20 @@
 <template>
-  <Form @addRow="addRow"></Form>
-  <Link to="/" text="Back to list" />
+  <Card>
+    <Form @addRow="addRow" :data="{}"></Form>
+  </Card>
 </template>
 
 <script setup="ts">
 import { useUserStore } from "../store";
 import { useRouter } from "vue-router";
+import Card from "../components/Card.vue";
 import Form from "../components/Form.vue";
-import Link from "../components/Link.vue";
 
 const router = useRouter();
-const counter = useUserStore();
+const users = useUserStore();
 
 const addRow = (formData) => {
-  counter.add(formData);
+  users.add(formData);
   router.push("/");
 };
 </script>

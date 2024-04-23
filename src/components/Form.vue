@@ -1,23 +1,28 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="my-3">
-      <label for="firstname">First name</label>
-      <input type="text" id="firstname" name="firstname" v-model="firstName" />
+    <div v-for="field in Object.keys(fieldNames)" :key="field">
+      <Field
+        :name="field"
+        :label="fieldNames[field]"
+        :default-value="props.data[field] ? props.data[field] : ''"
+        v-model="formData[field]"
+      />
     </div>
 
-    <div class="my-3">
-      <label for="lastname">Last name</label>
-      <input type="text" id="lastname" name="lastname" v-model="lastName" />
-    </div>
+    <div class="flex justify-stretch mt-6 gap-3 items-grow">
+      <button type="submit" :class="styles.button + ' flex-grow'">Save</button>
 
-    <button type="submit" class="bg-slate-500 p-3 text-white border-sm">
-      Save
-    </button>
+      <Link to="/" text="Back to list" />
+    </div>
   </form>
 </template>
 
 <script setup lang="ts">
 import { ref, defineProps, defineEmits } from "vue";
+import Field from "./Field.vue";
+import { fieldNames, styles } from "../constants";
+import Link from "../components/Link.vue";
+
 const emit = defineEmits();
 
 const props = defineProps({
@@ -31,11 +36,12 @@ const props = defineProps({
   },
 });
 
-const firstName = ref(props?.data?.firstName || "");
-const lastName = ref(props?.data?.lastName || "");
+const formData = ref({
+  firstName: "",
+  lastName: "",
+});
 
 const submitForm = () => {
-  const formData = { firstName: firstName.value, lastName: lastName.value };
-  emit("addRow", formData);
+  emit("addRow", formData.value);
 };
 </script>

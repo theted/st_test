@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-max-content mx-auto flex flex-col items-center justify-center h-screen bg-blue-300"
+    class="w-max-content mx-auto flex flex-col items-center justify-center h-screen"
   >
     <RouterView />
   </div>
@@ -12,7 +12,7 @@ import { createRandomUser } from "./helpers";
 const users = useUserStore();
 
 // create initial random users
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 5; i++) {
   users.add(createRandomUser());
 }
 </script>
