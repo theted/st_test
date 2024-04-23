@@ -15,7 +15,7 @@
       <tr
         v-for="(item, index) in data"
         :key="index"
-        class="odd:bg-gray-100 even:bg-gray-50"
+        class="odd:bg-gray-100 even:bg-gray-50 hover:bg-gray-200 transition-colors"
       >
         <td v-for="(value, key) in item" :key="key" class="p-3">
           <RouterLink :to="`/edit/${index}`">

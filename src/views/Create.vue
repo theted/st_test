@@ -1,6 +1,6 @@
 <template>
   <Card>
-    <Form @addRow="addRow" :data="{}"></Form>
+    <Form @addRow="addRow" :data="{}" />
   </Card>
 </template>
 

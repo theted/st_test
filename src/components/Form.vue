@@ -22,6 +22,7 @@ import { ref, defineProps, defineEmits } from "vue";
 import Field from "./Field.vue";
 import { fieldNames, styles } from "../constants";
 import Link from "../components/Link.vue";
+import { User } from "../types";
 
 const emit = defineEmits();
 
@@ -36,7 +37,7 @@ const props = defineProps({
   },
 });
 
-const formData = ref({
+const formData = ref<User>({
   firstName: "",
   lastName: "",
 });

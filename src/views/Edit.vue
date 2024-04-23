@@ -1,6 +1,6 @@
 <template>
   <Card>
-    <Form :data="user" @addRow="submit" />
+    <Form @addRow="addRow" :data="user" />
   </Card>
 </template>
 
@@ -9,14 +9,15 @@ import { useRouter, useRoute } from "vue-router";
 import Form from "../components/Form.vue";
 import Card from "../components/Card.vue";
 import { useUserStore } from "../store";
+import { User } from "../types";
 
 const userStore = useUserStore();
 const router = useRouter();
 const { params } = useRoute();
-const user = userStore.get(params.id);
+const user = userStore.get(Number(params.id));
 
-const submit = (data) => {
-  userStore.update(params.id, data);
+const addRow = (data: User) => {
+  userStore.update(Number(params.id), data);
   router.push("/");
 };
 </script>

@@ -7,13 +7,14 @@
       :id="name"
       :value="value"
       @input="updateValue"
+      required
       class="p-3 bg-gray-100 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-200"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from "vue";
+import { ref } from "vue";
 
 const props = defineProps({
   name: {
@@ -29,17 +30,15 @@ const props = defineProps({
   },
 });
 
-const value = ref(props.defaultValue);
-
-watchEffect(() => {
-  value.value = props.defaultValue;
-});
-
 const emit = defineEmits(["update:modelValue"]);
+const value = ref(props.defaultValue);
 
 const updateValue = (event: Event) => {
   const inputElement = event.target as HTMLInputElement;
   value.value = inputElement.value;
   emit("update:modelValue", value.value);
 };
+
+// emit initial value to parent component
+emit("update:modelValue", value.value);
 </script>
