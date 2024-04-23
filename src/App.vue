@@ -1,21 +1,18 @@
-<script setup lang="ts"></script>
-
 <template>
-  <Table :data="data" />
+  <div
+    class="w-max-content mx-auto flex flex-col items-center justify-center h-screen bg-blue-300"
+  >
+    <RouterView />
+  </div>
 </template>
 
-<script setup lang="ts">
-import Table from "./components/Table.vue";
-import { faker } from "@faker-js/faker";
+<script setup>
+import { useUserStore } from "./store";
+import { createRandomUser } from "./helpers";
+const users = useUserStore();
 
-const createRandomUser = () => ({
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-});
-
-const generateInitialData = () => {
-  return Array.from({ length: 10 }).map(() => createRandomUser());
-};
-
-const data = generateInitialData();
+// create initial random users
+for (let i = 0; i < 10; i++) {
+  users.add(createRandomUser());
+}
 </script>
