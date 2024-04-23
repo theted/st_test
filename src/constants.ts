@@ -1,6 +1,8 @@
 export const fieldNames = {
   firstName: "First Name",
   lastName: "Last Name",
+  email: "Email",
+  phone: "Phone",
 };
 
 export const styles = {

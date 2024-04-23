@@ -40,6 +40,8 @@ const props = defineProps({
 const formData = ref<User>({
   firstName: "",
   lastName: "",
+  email: "",
+  phone: "",
 });
 
 const submitForm = () => {
